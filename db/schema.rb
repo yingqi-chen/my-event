@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_02_202539) do
+ActiveRecord::Schema.define(version: 2019_11_02_220802) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "organization_id"
@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(version: 2019_11_02_202539) do
     t.string "password_digest"
     t.string "email"
     t.text "bio"
-    t.boolean "is_organization"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_organization", default: false
   end
 
 end
