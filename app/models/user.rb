@@ -5,9 +5,8 @@ class User < ApplicationRecord
     has_many :being_commented_comments, foreign_key: "volunteer_id", class_name: "Comment"
     has_many :joined_events, through: :being_commented_comments, :source => :event
 
-    validates :name, presence: true
-    validates :email, presence: true
-    validates :password_digest, presence: true
+    validates :name, :email, :password_digest, presence: true
+
     validates :email, uniqueness: true
     validates :email, confirmation: true
 

@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   root 'static#home'
 
-  get '/login', to: "session#new", as: "login"
-  get '/logout', to: "session#destroy", as: "logout"
+  get '/login', to: "sessions#login"
+  get '/logout', to: "sessions#destroy", as: "logout"
   
   resources :events, :users, :comments
   
