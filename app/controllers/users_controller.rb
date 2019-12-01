@@ -15,7 +15,10 @@ class UsersController < ApplicationController
     end
 
     def show
+        binding.pry
+        log_in_first
         @user = User.find_by id: params[:id]
+        correct_user?
         if @user
             render 'show'
         else
