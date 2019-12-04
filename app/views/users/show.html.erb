@@ -2,8 +2,18 @@
 
 <% if @user.is_organization %>
   <%= "#{@user.name}'s make the following comments:" %>
-  <% @comments.each do |c|%>
-    <%= c.%>
+<% else %>
+  <%= "#{@user.name}'s has the following comments:" %>
+<% end %>
+
+  <ul>
+    <% @comments.each do |c|%>
+        <li><%= c.content %><li>
+    <% end %>
+  </ul>
+
+
+
 
 
 

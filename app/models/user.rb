@@ -9,7 +9,8 @@ class User < ApplicationRecord
 
     validates :email, uniqueness: true
     validates :email, confirmation: true
-
+    
+    scope :is_organization, -> { where(is_organization: true) }
 
 
 end
