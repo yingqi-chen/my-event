@@ -15,15 +15,19 @@ class UsersController < ApplicationController
     end
 
     def show
-        binding.pry
-        log_in_first
-        @user = User.find_by id: params[:id]
-        correct_user?
-        if @user
-            render 'show'
-        else
-            redirect_to '/login'
-        end
+      if log_in?
+          @user = User.find_by id: params[:id]
+          if @user
+              related_events_and_comments
+              render 'show' 
+          else
+              flash[:error] = "That user doesn't exist."
+              redirect_to '/login'
+          end
+      else
+        flash[:error] = "You have to log in first."
+        redirect_to '/login'
+      end
     end
 
 
@@ -32,4 +36,15 @@ class UsersController < ApplicationController
       def user_params
         params.require(:user).permit(:name,:password,:email,:email_confirmation)
       end
+
+      def related_events_and_comments
+        if @user.is_organization
+          @events = @user.organized_events
+          @comments = @user.commented_comments
+        else
+          @events = @user.joined_events
+          @comments = @user.being_commented_comments
+        end
+      end
+
 end
