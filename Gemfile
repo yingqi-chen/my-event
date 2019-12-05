@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.1'
 
+gem 'omniauth-google-oauth2'
+gem 'dotenv-rails'
+gem 'omniauth'
+gem 'omniauth-google'
 gem 'pry'
 gem 'bcrypt'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

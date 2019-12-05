@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#login"
   get '/logout', to: "sessions#destroy", as: "logout"
+  get '/auth/google_oauth2/callback' => 'sessions#new_from_google'
+  post '/create_from_google',to: "sessions#create"
   
   resources :events, :users, :comments
   
