@@ -10,4 +10,11 @@ class ApplicationController < ActionController::Base
       !!session[:user_id]
     end
 
+    def authenticate_user
+      unless log_in?
+        flash[:error] = "You have to log in first."
+        redirect_to '/login'
+      end
+    end
+
 end

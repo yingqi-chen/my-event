@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user, only: [:show]
 
     def new
         @user = User.new
@@ -15,18 +16,13 @@ class UsersController < ApplicationController
     end
 
     def show
-      if log_in?
-          @user = User.find_by id: params[:id]
-          if @user
-              related_events_and_comments
-              render 'show' 
-          else
-              flash[:error] = "That user doesn't exist."
-              redirect_to '/login'
-          end
+      @user = User.find_by id: params[:id]
+      if @user
+          related_events_and_comments
+          render 'show' 
       else
-        flash[:error] = "You have to log in first."
-        redirect_to '/login'
+        flash[:error] = "That user doesn't exist."
+        redirect_to '/'
       end
     end
 
@@ -46,5 +42,7 @@ class UsersController < ApplicationController
           @comments = @user.being_commented_comments
         end
       end
+
+
 
 end
