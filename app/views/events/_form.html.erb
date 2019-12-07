@@ -22,7 +22,28 @@
     <%= f.label :description %>
     <%= f.text_area :description %><br>
     <%= f.label :is_free, "Free?" %>
-    <%= f.check_box :is_free %>
+    <%= f.check_box :is_free %><br>
+
+
+    <%= f.label "Event address" %><br>
+    <%= f.fields_for :locations do |l| %>
+        <%= l.label :street_address_1 %>
+        <%= l.text_field :street_address_1 %><br>
+     
+        <%= l.label :street_address_2 %>
+        <%= l.text_field :street_address_2 %><br>
+     
+        <%= l.label :city %>
+        <%= l.text_field :city %><br>
+     
+        <%= l.label :state %>
+        <%= l.text_field :state %><br>
+     
+        <%= l.label :zipcode %>
+        <%= l.text_field :zipcode %><br>
+
+    <% end %>
+
 
     <%= f.submit%>
 <% end %>

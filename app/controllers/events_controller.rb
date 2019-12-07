@@ -10,6 +10,7 @@ class EventsController < ApplicationController
     def new
         @event = Event.new
         @user = current_user
+        @location1 = @event.locations.build
     end
 
     def create
@@ -17,8 +18,7 @@ class EventsController < ApplicationController
         @event = Event.new(event_params)
         @user = current_user
         @event.organization = @user
-        @event.save
-        if @event.valid?
+        if @event.save
             binding.pry
             redirect_to event_path(@event)
         else
@@ -48,6 +48,13 @@ private
       end
 
       def event_params
-        params.require(:event).permit(:name,:contact_email,:phone_number, :is_free,:description, :start_date, :end_date)
+        params.require(:event).permit(:name,:contact_email,:phone_number, :is_free,:description, :start_date, :end_date, 
+        locations_attributes: [
+            :street_address_1,
+            :street_address_2,
+            :city,
+            :state,
+            :zipcode
+          ])
       end
 end
