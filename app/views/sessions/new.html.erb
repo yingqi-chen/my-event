@@ -1,6 +1,3 @@
-<% if flash[:error]%>
-<%= flash[:error] %>
-<% end %>
 
 <%= form_tag("/login", method: :post) do %>
     <%= label_tag(:email, "Your email:") %>
