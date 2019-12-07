@@ -3,21 +3,50 @@
 
 <h2>Basic Information: </h2>
 Organization: <%= link_to @organization.name, user_path(@organization)%><br>
-Start date: <%= @event.start_date.strftime("%B %d, %Y") %><br>
-End date: <%= @event.end_date.strftime("%B %d, %Y") %><br>
-Description: <%= @event.description %><br>
+
+<% if @event.start_date %>
+  Start date: <%= @event.start_date.strftime("%B %d, %Y") %><br>
+<% end %>
+
+<% if @event.end_date %>
+  End date: <%= @event.end_date.strftime("%B %d, %Y") %><br>
+<% end %>
+
+<% if @event.description %>
+  Description: <%= @event.description %><br>
+<% end %>
+
 <%= @event.is_free ? "Free Event":"Not Free Event"%><br>
 
 
 
 <h2>Contact:</h2>
 Contact email: <%= @event.contact_email %><br>
-Phone: <%= @event.phone_number %><br>
+<% if @event.phone_number %> 
+  Phone: <%= @event.phone_number %><br>
+<% end %>
+
+
+
+<% unless @volunteers.empty? %>
+  <h2>Volunteers who signed for this event:</h2>
+  <ul>
+    <% @volunteers.each do |v|%>
+      <li><%= link_to v.name, user_path(v)%></li>
+    <% end %>
+  </ul>   
+<% end %>
+
+<% unless @comments.empty? %>
+  <h2>Comments about this event:</h2>
+  <ul>
+    <% @comments.each do |c|%>
+      <li><%= link_to c.content, comment_path(c)%></li>
+    <% end %>
+  </ul>   
+<% end %>
 
 
 
 
 
-
-
-</h3>

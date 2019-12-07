@@ -2,7 +2,7 @@ class Event < ApplicationRecord
     belongs_to :organization, class_name: "User"
     has_many :comments
     has_many :locations
-    has_many :volunteers, through: :comments, source: "Volunteer"
+    has_many :volunteers, through: :comments
     accepts_nested_attributes_for :locations
 
 

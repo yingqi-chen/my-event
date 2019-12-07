@@ -1,13 +1,15 @@
 class Comment < ApplicationRecord
     validate :comment_made_by_organization, on: :create
     validate :comment_on_volunteer, on: :create
+    validates :organization_id, :volunteer_id, :event_id, presence: true
+    validates :content, length:{minimum: 20}
 
 
     belongs_to :organization, class_name: "User"
     belongs_to :volunteer, class_name: "User"
     belongs_to :event
-    validates :organization_id, :volunteer_id, :event_id, presence: true
-    validates :content, length:{minimum: 20}
+
+
     
 
     def comment_made_by_organization

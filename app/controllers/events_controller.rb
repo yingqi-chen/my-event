@@ -31,6 +31,8 @@ class EventsController < ApplicationController
 
     def show
         @organization = @event.organization
+        @volunteers = @event.volunteers
+        @comments = @event.comments
     end
 
     def update
