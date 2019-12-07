@@ -18,7 +18,6 @@ class EventsController < ApplicationController
         @user = current_user
         @event.organization = @user
         if @event.save
-            binding.pry
             redirect_to event_path(@event)
         else
             render 'new'
@@ -31,7 +30,7 @@ class EventsController < ApplicationController
     end
 
     def show
-
+        @organization = @event.organization
     end
 
     def update

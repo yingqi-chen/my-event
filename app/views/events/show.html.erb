@@ -1,1 +1,23 @@
-event show
+<h1><%= @event.name %></h1>
+
+
+<h2>Basic Information: </h2>
+Organization: <%= link_to @organization.name, user_path(@organization)%><br>
+Start date: <%= @event.start_date.strftime("%B %d, %Y") %><br>
+End date: <%= @event.end_date.strftime("%B %d, %Y") %><br>
+Description: <%= @event.description %><br>
+<%= @event.is_free ? "Free Event":"Not Free Event"%><br>
+
+
+
+<h2>Contact:</h2>
+Contact email: <%= @event.contact_email %><br>
+Phone: <%= @event.phone_number %><br>
+
+
+
+
+
+
+
+</h3>
