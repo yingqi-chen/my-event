@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_171359) do
+ActiveRecord::Schema.define(version: 2019_12_07_205921) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "organization_id"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2019_12_04_171359) do
 
   create_table "events", force: :cascade do |t|
     t.integer "organization_id"
-    t.string "location"
     t.string "contact_email"
     t.string "phone_number"
     t.boolean "is_free"
@@ -33,6 +32,17 @@ ActiveRecord::Schema.define(version: 2019_12_04_171359) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "street_address_1"
+    t.string "street_address_2"
+    t.string "city"
+    t.string "state"
+    t.string "zipcode"
+    t.string "address_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

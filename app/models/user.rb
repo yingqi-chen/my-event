@@ -1,5 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
+    accepts_nested_attributes_for :locations
+
     has_many :organized_events, foreign_key: "organization_id", class_name: "Event"
     has_many :commented_comments, foreign_key: "organization_id", class_name: "Comment"
     has_many :being_commented_comments, foreign_key: "volunteer_id", class_name: "Comment"
