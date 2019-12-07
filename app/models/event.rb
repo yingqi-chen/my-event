@@ -8,4 +8,5 @@ class Event < ApplicationRecord
 
     validates :organization_id, :contact_email, :name, presence: true
     scope :is_free, ->{where(is_free: true)}
+    scope :is_finish, ->{ where("end_date < ?", Time.zone.now) }
 end
