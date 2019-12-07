@@ -17,4 +17,11 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def authorized_user?
+      unless @user.id = current_user.id
+        flash[:error] = "You have no right to do this operation."
+        redirect to '/'
+      end
+    end
+
 end

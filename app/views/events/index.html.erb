@@ -1,0 +1,10 @@
+<h1>Events: </h1>
+<ul>
+<% @events.each do |e| %>
+    <% org = e.organization %>
+    <li><%= link_to e.name, event_path(e)%> is held by <%= link_to org.name, user_path(org) %></li>
+<% end %>
+</ul>
+
+
+
