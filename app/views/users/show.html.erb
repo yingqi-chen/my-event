@@ -1,17 +1,32 @@
 <h1><%= "Hello #{@user.name}!" %></h1>
 
 <% if @user.is_organization %>
-  <%= "#{@user.name}'s make #{@comments.size} following comment(s):" %>
+  <%= "#{@user.name}'s make #{@comments.size} comment(s):" %>
 <% else %>
-  <%= "#{@user.name}'s has #{@comments.size} following comment(s):" %>
+  <%= "#{@user.name}'s has #{@comments.size} comment(s):" %>
 <% end %>
 
+<% unless @events.empty? %>
+<h2>Your events: </h2>
+<ul>
+  <% @events.each do |e|%>
+    <li><%= link_to e.name, event_path(e)%></li>
+  <% end %>
+  </ul>   
+<% end %>
+
+<% unless @comments.empty? %>
+  <h2>Your comments: </h2>
   <ul>
     <% @comments.each do |c|%>
-        <li><%= c.content %></li>
+      <li><%= link_to c.content, comment_path(c)%></li>
     <% end %>
-  </ul>
+  </ul>   
+<% end %>
 
+<% if @current_user.is_organization %>
+  <%= link_to "Comment on this volunteer.", new_comment_path %>
+<% end %>
 
 
 

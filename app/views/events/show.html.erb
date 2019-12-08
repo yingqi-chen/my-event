@@ -43,10 +43,13 @@ Contact email: <%= @event.contact_email %><br>
     <% @comments.each do |c|%>
       <li><%= link_to c.content, comment_path(c)%></li>
     <% end %>
-  </ul>   
+  </ul><br>   
 <% end %>
+  
 
-
+  <br>
+  <%= link_to "Edit the event", edit_event_path(@event) %><br>
+  <%= link_to "Delete the event", @event, method: :delete, data: { confirm: "Really?" } %>
 
 
 

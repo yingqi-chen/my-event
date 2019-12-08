@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-    before_action :authenticate_user, only: [:show, :edit, :new]
-    before_action :find_event, only: [:show, :edit]
+    before_action :authenticate_user, only: [:show, :edit, :new, :destroy]
+    before_action :find_event, only: [:show, :edit, :update, :destroy]
     
 
     def index
@@ -8,9 +8,14 @@ class EventsController < ApplicationController
     end
 
     def new
-        @event = Event.new
         @user = current_user
-        @location1 = @event.locations.build
+        if @user.is_organization
+           @event = Event.new
+           @location1 = @event.locations.build
+        else
+           flash[:error] = "Only organization user can create an event."
+           redirect_to events_path
+        end
     end
 
     def create
@@ -32,12 +37,25 @@ class EventsController < ApplicationController
     def show
         @organization = @event.organization
         @volunteers = @event.volunteers
-        @comments = @event.comments
+        @comments = @event.comments   
     end
 
     def update
+        @event.update(event_params)
+        redirect_to event_path(@event)
     end
     
+    def destroy
+        if current_user == @event.organization
+            @event.delete
+            redirect_to events_path
+        else
+            flash[:error] = "Only the creator can delete this event."
+            redirect_to event_path(@event)
+        end
+    end
+
+
 private
     def find_event
         @event = Event.find_by :id=>params[:id] 

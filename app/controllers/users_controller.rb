@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user, only: [:show]
-
+    
+    
     def new
         @user = User.new
     end
@@ -16,9 +17,11 @@ class UsersController < ApplicationController
     end
 
     def show
+      @current_user = current_user
       @user = User.find_by id: params[:id]
       if @user
           related_events_and_comments
+          binding.pry
           render 'show' 
       else
         flash[:error] = "That user doesn't exist."
