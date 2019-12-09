@@ -19,7 +19,10 @@
   <h2>Your comments: </h2>
   <ul>
     <% @comments.each do |c|%>
-      <li><%= link_to c.content, comment_path(c)%></li>
+      <li><%= link_to c.content, comment_path(c)%><br>
+      <%= link_to "Edit", edit_comment_path(c)%> 
+      <%= link_to "Delete", c, method: :delete, data: { confirm: "Really?" } %>
+      </li>
     <% end %>
   </ul>   
 <% end %>
