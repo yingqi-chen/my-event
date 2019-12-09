@@ -1,13 +1,36 @@
+<% if @comment.errors.any?%>
+<h2>
+  <%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:
+</h2>
+
+<ul>
+<% @comment.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+<% end %>
+</ul>
+<% end %>
+
+
+<h1>Make a comment for the volunteer: </h1>
+
+
 <%= form_for @comment do |f|%>
-    <% if @comment.errors.any?%>
-    <h2>
-      <%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:
-    </h2>
 
-    <ul>
-    <% @comment.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
 
-    <% end %>
+    
+    <%= f.label :volunteer_id  %>
+      <% if @comment_user  %>
+         <%= f.collection_select :volunteer_id, User.all, :id, :name, {:selected=>@commented_user.name } %>
+      <% else %>
+         <%= f.collection_select :volunteer_id, User.all, :id, :name  %>
+      <% end %>
+    
+    <%= f.label :event_id %>
+    <%= f.collection_select :event_id, Event.all, :id, :name %><br>
+
+    <%= f.label :content %>
+    <%= f.text_area :content %><br>
+
+    <%= f.submit %>
+
+<% end %>

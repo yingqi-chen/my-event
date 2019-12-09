@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/logout', to: "sessions#destroy", as: "logout"
   get '/auth/google_oauth2/callback' => 'sessions#new_from_google'
   post '/create_from_google',to: "sessions#create"
+  post '/new_comment', to: "comments#new"
   
   resources :events, :users, :comments
   

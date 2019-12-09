@@ -21,7 +21,6 @@ class UsersController < ApplicationController
       @user = User.find_by id: params[:id]
       if @user
           related_events_and_comments
-          binding.pry
           render 'show' 
       else
         flash[:error] = "That user doesn't exist."

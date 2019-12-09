@@ -25,7 +25,10 @@
 <% end %>
 
 <% if @current_user.is_organization %>
-  <%= link_to "Comment on this volunteer.", new_comment_path %>
+  <%= form_tag("/new_comment") do %>
+    <%= hidden_field_tag :volunteer_id, value = @user.id %>
+    <%= submit_tag "Comment on this volunteer" %>
+  <% end %>
 <% end %>
 
 
