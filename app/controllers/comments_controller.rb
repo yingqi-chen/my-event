@@ -24,16 +24,19 @@ class CommentsController < ApplicationController
    end
 
    def edit
-
    end
 
    def update
-
+     binding.pry
+     if @comment.update(comment_params)
+       redirect_to comment_path(@comment)
+     else
+       render 'edit'
+     end
    end
 
 
    def destroy
-    binding.pry
     if @comment.organization = current_user
       @comment.delete
     else
@@ -43,30 +46,26 @@ class CommentsController < ApplicationController
    end
 
 
-
-
-
-
-
 private
 
-   def authorized_commentor?
-     unless current_user.is_organization
-       flash[:error] = "Only organization can comment on a volunteer."
-       render 'new'
-     end
-   end
+def comment_params
+  params.require(:comment).permit(:organization_id, :volunteer_id, :event_id,:content)
+end
 
-   def comment_params
-    params.require(:comment).permit(:organization_id, :volunteer_id, :event_id,:content)
+def find_comment
+  @comment = Comment.find_by id:params[:id]
+  unless @comment
+    flash[:error] = "This comment doesn't exist."
+    redirect_to user_path(current_user)
   end
+end
 
-  def find_comment
-    @comment = Comment.find_by id:params[:id]
-    unless @comment
-      flash[:error] = "This comment doesn't exist."
-      redirect_to user_path(current_user)
-    end
+def authorized_commentor?
+  unless current_user.is_organization
+    flash[:error] = "Only organization can comment on a volunteer."
+    render 'new'
   end
+end
+
 
 end
