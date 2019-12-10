@@ -1,6 +1,7 @@
 class Comment < ApplicationRecord
-    validate :comment_made_by_organization, on: :create
-    validate :comment_on_volunteer, on: :create
+    validate :comment_made_by_organization, on: [:create, :update]
+    validate :comment_on_volunteer, on: [:create, :update]
+    validate :cant_comment_on_oneself, on: [:create, :update]
 
     validates :organization_id, :volunteer_id, :event_id, presence: true
     validates :content, length:{minimum: 20}
@@ -13,7 +14,7 @@ class Comment < ApplicationRecord
     
     def comment_made_by_organization
         unless self.organization.is_organization
-         errors.add(:organization_id, "has to be of an organization.")
+             errors.add(:organization_id, "has to be of an organization.")
         end
      end
  
@@ -21,5 +22,11 @@ class Comment < ApplicationRecord
          if self.volunteer.is_organization
              errors.add(:volunteer_id, "has to be of an volunteer")
          end
+     end
+
+     def cant_comment_on_oneself
+        if self.organization = self.volunteer
+            errors.add(:organization_id, "cannot comment on yourself.")
+        end
      end
 end

@@ -12,6 +12,7 @@ class User < ApplicationRecord
     validates :email, confirmation: true
     
     scope :is_organization, -> { where(is_organization: true) }
+    scope :is_not_organization, -> { where(is_organization: false) }
 
 
 end

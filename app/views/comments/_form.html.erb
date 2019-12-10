@@ -20,9 +20,9 @@
     
     <%= f.label :volunteer_id  %>
       <% if @comment_user  %>
-         <%= f.collection_select :volunteer_id, User.all, :id, :name, {:selected=>@commented_user.name } %>
+         <%= f.collection_select :volunteer_id, User.all.is_not_organization, :id, :name, {:selected=>@commented_user.name } %>
       <% else %>
-         <%= f.collection_select :volunteer_id, User.all, :id, :name  %>
+         <%= f.collection_select :volunteer_id, User.all.is_not_organization, :id, :name  %>
       <% end %>
     
     <%= f.label :event_id %>

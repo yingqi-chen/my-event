@@ -1,9 +1,9 @@
 <h1><%= "Hello #{@user.name}!" %></h1>
 
 <% if @user.is_organization %>
-  <%= "#{@user.name}'s make #{@comments.size} comment(s):" %>
+  <%= "#{@user.name}'s make #{@comments.size} comment(s)" %>
 <% else %>
-  <%= "#{@user.name}'s has #{@comments.size} comment(s):" %>
+  <%= "#{@user.name}'s has #{@comments.size} comment(s)" %>
 <% end %>
 
 <% unless @events.empty? %>
@@ -27,7 +27,7 @@
   </ul>   
 <% end %>
 
-<% if @current_user.is_organization %>
+<% if @current_user.is_organization && @current_user != @user %>
   <%= form_tag("/new_comment") do %>
     <%= hidden_field_tag :volunteer_id, value = @user.id %>
     <%= submit_tag "Comment on this volunteer" %>

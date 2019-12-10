@@ -45,4 +45,6 @@ That means the website is working now. You can visit the website by going to
 
 ## Usage
 
-On the home page, you can set up your own user account or log in if you already have one. 
+On the home page, you can set up your own user account or log in(you can also log in with your google account!) if you already have one. Also, you can go directly to user index page and event index page. 
+When you go to user index page, you can check out user's file and then see which one is the volunteer you want to comment on or look at the comment so as to approach them later for your event(but only an organization is authorized to comment on an volunteer.)
+When you go to event index page, you can check out the events or if you are an organization,you can make your own event so that people can see it from the website. 
