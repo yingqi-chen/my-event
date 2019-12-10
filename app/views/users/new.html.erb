@@ -27,7 +27,16 @@
    <%= f.text_field :email %></br>
    <%= f.label :email_confirmation %></br>
    <%= f.text_field :email_confirmation %></br>
+   
+  
+   <%= f.label :bio %><br>
+   <%= f.text_area :bio %><br>
+
+   <%= f.label :is_organization %>
+   <%= f.check_box :is_organization %><br>
 
    <%= f.submit %>
+
+
 
 <% end %>
