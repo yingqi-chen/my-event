@@ -11,7 +11,6 @@ class CommentsController < ApplicationController
    end
 
    def create 
-    binding.pry
     @comment = Comment.new(comment_params)
     @comment.organization_id = session[:user_id]
     if @comment.save

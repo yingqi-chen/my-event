@@ -1,0 +1,11 @@
+<h2>
+<em><%= link_to @comment.organization.name, user_path(@comment.organization)%></em> commented on 
+<em><%= link_to @comment.volunteer.name, user_path(@comment.volunteer)%></em>'s performance
+ on event <%= link_to @comment.event.name, event_path(@comment.event)%>:</h2>
+ <br>
+<%= @comment.content %>
+
+<% if @comment.organization_id ==session[:user_id] %>
+    <%= link_to "Edit", edit_comment_path(@comment)%>
+    <%= link_to "Delete", @comment, method: :delete, data: { confirm: "Really?" }%>
+<% end %>

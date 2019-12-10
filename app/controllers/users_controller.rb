@@ -6,6 +6,11 @@ class UsersController < ApplicationController
         @user = User.new
     end
 
+    def index
+      @users_organization = User.all.is_organization
+      @users_volunteer = User.all.is_not_organization
+    end
+
     def create
         @user = User.new(user_params)
         binding.pry

@@ -7,7 +7,7 @@
 <% end %>
 
 <% unless @events.empty? %>
-<h2>Your events: </h2>
+<h2><%= @user.name%>'s events: </h2>
 <ul>
   <% @events.each do |e|%>
     <li><%= link_to e.name, event_path(e)%></li>
@@ -16,10 +16,10 @@
 <% end %>
 
 <% unless @comments.empty? %>
-  <h2>Your comments: </h2>
+  <h2><%= @user.name%>'s comments: </h2>
   <ul>
     <% @comments.each do |c|%>
-      <li><%= link_to c.content, comment_path(c)%><br>
+      <li><%= link_to c.content, comment_path(c)%>
       <%= link_to "Edit", edit_comment_path(c)%> 
       <%= link_to "Delete", c, method: :delete, data: { confirm: "Really?" } %>
       </li>

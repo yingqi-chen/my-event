@@ -25,7 +25,7 @@ class Comment < ApplicationRecord
      end
 
      def cant_comment_on_oneself
-        if self.organization = self.volunteer
+        if self.organization == self.volunteer
             errors.add(:organization_id, "cannot comment on yourself.")
         end
      end

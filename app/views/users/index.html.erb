@@ -1,0 +1,20 @@
+<h1>Check out our organizations and volunteers now </h1>
+
+
+<h2>Organizations: </h2>
+
+<ul>
+    <% @users_organization.each do |o|%>
+        <li><%= link_to o.name, user_path(o) %></li>
+    <% end %>
+</ul>
+
+<h2>Volunteers: </h2>
+
+<ul>
+    <% @users_volunteer.each do |o|%>
+        <li><%= link_to o.name, user_path(o) %></li>
+    <% end %>
+</ul>
+
+
