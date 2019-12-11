@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.1'
 
+
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 gem 'omniauth'

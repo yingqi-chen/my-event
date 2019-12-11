@@ -2,9 +2,9 @@
 
 <h2>
 <% if @user.is_organization %>
-  <%= "As an organization, #{@user.name}'s makes #{@comments.size} comment(s)" %>
+  <%= "As an organization, #{@user.name} makes #{@comments.size} comment(s)" %>
 <% else %>
-  <%= "As an volunteer, #{@user.name}'s receives #{@comments.size} comment(s)" %>
+  <%= "As an volunteer, #{@user.name} receives #{@comments.size} comment(s)" %>
 <% end %>
 </h2>
 

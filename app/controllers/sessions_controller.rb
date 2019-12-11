@@ -18,7 +18,10 @@ class SessionsController < ApplicationController
 
     def new_from_google
        auth = request.env['omniauth.auth']['info']
-       @user = User.find_or_create_by(email: auth['email'])
+       @user = User.find_or_create_by(email: auth['email']) do |u|
+         u.name = auth['name']
+         u.password = "veryhardpassword"
+       end
        if @user.persisted?
         session[:user_id] = @user.id
         redirect_to user_path(@user)
@@ -45,7 +48,7 @@ class SessionsController < ApplicationController
 
     private
       def user_params
-        params.require(:user).permit(:name,:password,:email,:email_confirmation)
+        params.require(:user).permit(:name,:password,:email,:email_confirmation,:bio,:is_organization)
       end
     
     
