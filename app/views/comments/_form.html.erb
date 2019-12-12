@@ -1,23 +1,9 @@
-<% if @comment.errors.any?%>
-<h2>
-  <%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:
-</h2>
-
-<ul>
-<% @comment.errors.full_messages.each do |message| %>
-  <li><%= message %></li>
-<% end %>
-</ul>
-<% end %>
-
+<%= render partial: "layouts/error", locals: {object: @comment} %>
 
 <h1>Make a comment for the volunteer: </h1>
 
-
 <%= form_for @comment do |f|%>
 
-
-    
     <%= f.label :volunteer_id  %>
       <% if @comment_user  %>
          <%= f.collection_select :volunteer_id, User.all.is_not_organization, :id, :name, {:selected=>@commented_user.name } %>
