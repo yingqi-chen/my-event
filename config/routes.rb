@@ -12,12 +12,8 @@ Rails.application.routes.draw do
   
   resources :events, :users, :comments
   
-  resources :events, only: [:show] do 
-    resources :comments, only: [:show] 
-  end
-  
   resources :users, only:[:show] do 
-    resources :events
+    resources :events, only: [:show,:index,:new,:edit]
   end
   
 end

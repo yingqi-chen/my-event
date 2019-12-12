@@ -4,7 +4,20 @@ class EventsController < ApplicationController
     
 
     def index
-        @events = Event.all
+        if params[:user_id]
+            binding.pry
+            @user = User.find_by :id=>params[:user_id]
+            if @user && @user.is_organization
+              @events = @user.organized_events
+            elsif @user && !@user.is_organization
+              @events = @user.joined_events
+            else
+              flash[:error] = "The user doesn't exist."
+              redirect_to users_path
+            end
+        else
+            @events = Event.all
+        end   
     end
 
     def new
