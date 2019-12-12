@@ -1,12 +1,6 @@
 <h1><%= "Hello #{@user.name}!" %></h1>
 
-<h2>
-<% if @user.is_organization %>
-  <%= "As an organization, #{@user.name} makes #{@comments.size} comment(s)" %>
-<% else %>
-  <%= "As an volunteer, #{@user.name} receives #{@comments.size} comment(s)" %>
-<% end %>
-</h2>
+<h2><%= is_organization_field?(@user,@comments)%></h2>
 
 <% unless @comments.empty? %>
   <ul>
