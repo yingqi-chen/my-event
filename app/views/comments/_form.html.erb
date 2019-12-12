@@ -5,11 +5,7 @@
 <%= form_for @comment do |f|%>
 
     <%= f.label :volunteer_id  %>
-      <% if @comment_user  %>
-         <%= f.collection_select :volunteer_id, User.all.is_not_organization, :id, :name, {:selected=>@commented_user.name } %>
-      <% else %>
-         <%= f.collection_select :volunteer_id, User.all.is_not_organization, :id, :name  %>
-      <% end %>
+    <%= f.collection_select :volunteer_id, User.all.is_not_organization, :id, :name, {:selected=>@commented_user.name } if @commented_user  %>
     
     <%= f.label :event_id %>
     <%= f.collection_select :event_id, Event.all, :id, :name %><br>
