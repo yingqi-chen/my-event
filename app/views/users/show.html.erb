@@ -24,6 +24,10 @@
   <% end %>
 <% end %>
 
+<% if @current_user.is_organization %>
+  <%= link_to "create your own event!", new_user_event_path(@current_user) %>
+<% end %>
+
 
 
 

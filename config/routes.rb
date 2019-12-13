@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :events, :users, :comments
   
   resources :users, only:[:show] do 
-    resources :events, only: [:index]
+    resources :events, only: [:index, :new]
   end
   
 end
