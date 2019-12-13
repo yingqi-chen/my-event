@@ -1,17 +1,7 @@
 <%= form_for @user, :url=>'/create_from_google' do |f|%>
     
-    <% if @user.errors.any?%>
-    <h2>
-      <%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:
-    </h2>
+  <%= render partial: "layouts/error", locals: {object: @user} %>
 
-    <ul>
-    <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-
-<% end %>
 
     <%= f.label :name %>
     <%= f.text_field :name, :value=>@user.name%>
