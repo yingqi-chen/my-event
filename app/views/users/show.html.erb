@@ -14,12 +14,7 @@
 <% end %>
 
 <% unless @events.empty? %>
-<h2><%= @user.name%>'s events: </h2>
-<ul>
-  <% @events.each do |e|%>
-    <li><%= link_to e.name, event_path(e)%></li>
-  <% end %>
-  </ul>   
+<h2><%= @user.name%> has <%= @events.size %> <%= link_to "events",user_events_path(@user) %> </h2>  
 <% end %>
 
 <% if @current_user.is_organization && @current_user != @user %>

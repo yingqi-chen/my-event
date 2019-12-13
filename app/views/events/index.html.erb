@@ -1,4 +1,12 @@
-<h1>Events: </h1>
+<h1>
+  <% if @user %>
+    <%= @user.name %>'s Events:
+  <% else %>
+    <%= "Events" %>
+  <% end %>
+</h1>
+
+
 <ul>
 <% @events.each do |e| %>
     <% org = e.organization %>

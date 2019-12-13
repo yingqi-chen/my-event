@@ -5,7 +5,6 @@ class EventsController < ApplicationController
 
     def index
         if params[:user_id]
-            binding.pry
             @user = User.find_by :id=>params[:user_id]
             if @user && @user.is_organization
               @events = @user.organized_events
