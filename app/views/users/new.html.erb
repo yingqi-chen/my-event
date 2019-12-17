@@ -4,8 +4,7 @@
 <%= form_for @user do |f|%>
   <%= render partial: "layouts/error", locals: {object: @user} %>
  
-   <%= f.label :name %></br>   
-   <%= f.text_field :name %></br>
+  <%= render partial: "user", locals: {f: f} %>
 
    <%= f.label :password %></br>
    <%= f.password_field :password %></br>
