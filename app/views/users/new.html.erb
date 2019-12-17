@@ -4,25 +4,6 @@
 <%= form_for @user do |f|%>
   <%= render partial: "layouts/error", locals: {object: @user} %>
  
-  <%= render partial: "user", locals: {f: f} %>
-
-   <%= f.label :password %></br>
-   <%= f.password_field :password %></br>
-
-   <%= f.label :email %></br>
-   <%= f.text_field :email %></br>
-   <%= f.label :email_confirmation %></br>
-   <%= f.text_field :email_confirmation %></br>
-   
-  
-   <%= f.label :bio %><br>
-   <%= f.text_area :bio %><br>
-
-   <%= f.label :is_organization %>
-   <%= f.check_box :is_organization %><br>
-
-   <%= f.submit %>
-
-
+  <%= render partial: "users/user", locals: {f: f, user: @user} %>
 
 <% end %>
