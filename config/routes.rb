@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post '/create_from_google',to: "sessions#create"
   post '/new_comment', to: "comments#new"
   
-  resources :events, :users, :comments
+  resources :events, :users, :comments, :categories
   
   resources :users, only:[:show] do 
     resources :events, only: [:index, :new]

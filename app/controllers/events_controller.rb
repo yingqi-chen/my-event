@@ -31,6 +31,7 @@ class EventsController < ApplicationController
     end
 
     def create
+        binding.pry
         @event = Event.new(event_params)
         @user = current_user
         @event.organization = @user
@@ -78,7 +79,7 @@ private
       end
 
       def event_params
-        params.require(:event).permit(:name,:contact_email,:phone_number, :is_free,:description, :start_date, :end_date, 
+        params.require(:event).permit(:name,:contact_email,:phone_number, :is_free,:description, :start_date, :end_date, :category_id,
         locations_attributes: [
             :street_address_1,
             :street_address_2,

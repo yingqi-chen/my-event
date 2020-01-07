@@ -23,6 +23,8 @@
     <%= f.label :end_date %>
     <%= f.date_select :end_date %><br>
 
+    <%= f.collection_select :category_id, Category.all, :id, :name %><br>
+
 
 
 
