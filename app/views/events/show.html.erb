@@ -4,6 +4,10 @@
 <h2>Basic Information: </h2>
 Organization: <%= link_to @organization.name, user_path(@organization)%><br>
 
+<% if @event.category %>
+  Category: <%= link_to @event.category.name, category_path(@event.category)%><br>
+<% end %>
+
 <% if @event.start_date %>
   Start date: <%= @event.start_date.strftime("%B %d, %Y") %><br>
 <% end %>
