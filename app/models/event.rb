@@ -4,6 +4,7 @@ class Event < ApplicationRecord
     has_many :locations
     has_many :volunteers, through: :comments
     accepts_nested_attributes_for :locations
+    belongs_to :category
 
 
     validates :organization_id, :contact_email, :name, presence: true
